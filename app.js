@@ -54,20 +54,20 @@ document.addEventListener('DOMContentLoaded', () => {
     zoomControl: false // 커스텀 버튼 사용
   });
 
-  // 무료 타일 레이어
+  // 완전 무료 오픈소스 타일 레이어 (API Key 불필요)
   const tileLayers = {
-    carto: L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+    osm: L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }),
-    osm: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    esri: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
       maxZoom: 19,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      attribution: 'Tiles &copy; Esri'
     })
   };
 
-  tileLayers.carto.addTo(map);
-  let currentTileKey = 'carto';
+  tileLayers.osm.addTo(map);
+  let currentTileKey = 'osm';
 
   // 마커 클러스터 그룹
   const markersCluster = L.markerClusterGroup({

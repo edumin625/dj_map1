@@ -89,7 +89,7 @@
 | 구분 | 선정 기술 | 선정 사유 |
 | :--- | :--- | :--- |
 | **지도 라이브러리** | Leaflet.js (v1.9+) | 오픈소스 경량(40KB) 지도 라이브러리, 완벽한 모바일 터치 지원 |
-| **지도 타일** | OpenStreetMap (OSM) CartoDB Voyager | 완전 무료, API 키 미필요, 시인성이 높고 깔끔한 한국어 지원 타일 |
+| **지도 타일** | OpenStreetMap (OSM) / Esri World Street Map | 완전 무료, API 키 미필요, 시인성이 높고 깔끔한 한국어 지원 타일 |
 | **클러스터링** | Leaflet.markercluster | 2,780개 마커의 고성능 클러스터 렌더링 지원 |
 | **데이터 파싱** | PapaParse (or 사전 JSON 변환) | 브라우저 내 초고속 CSV 파싱 |
 | **프론트엔드 UI** | HTML5, CSS3 (Tailwind CSS CDN), Vanilla JS | 빌드 과정 없는 단일 배포 가능 구조, 가볍고 빠른 실행 속도 |
