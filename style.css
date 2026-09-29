@@ -1,0 +1,740 @@
+/* ==========================================================================
+   부산 편의점 지도 웹 애플리케이션 - 반응형 스타일시트
+   ========================================================================== */
+
+:root {
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --bg-main: #f8fafc;
+  --card-bg: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --border-color: #e2e8f0;
+  
+  /* 편의점 브랜드 시그니처 색상 */
+  --brand-cu: #6b21a8;
+  --brand-cu-bg: #f3e8ff;
+  --brand-gs25: #0284c7;
+  --brand-gs25-bg: #e0f2fe;
+  --brand-7eleven: #15803d;
+  --brand-7eleven-bg: #dcfce7;
+  --brand-emart24: #d97706;
+  --brand-emart24-bg: #fef3c7;
+  --brand-other: #475569;
+  --brand-other-bg: #f1f5f9;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Pretendard Variable", Pretendard, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  color: var(--text-primary);
+  background-color: var(--bg-main);
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+/* ================= 앱 전체 레이아웃 ================= */
+.app-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ================= 좌측 사이드바 (데스크톱) ================= */
+.sidebar {
+  width: 420px;
+  min-width: 380px;
+  height: 100%;
+  background: var(--card-bg);
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-header {
+  padding: 1.25rem 1.25rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+  background: linear-gradient(135deg, #1e40af, #2563eb);
+  color: #ffffff;
+}
+
+.header-title-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.app-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.app-subtitle {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 0.25rem;
+}
+
+/* 필터 섹션 */
+.filter-section {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border-color);
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.search-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-input-wrap svg {
+  position: absolute;
+  left: 0.85rem;
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.7rem 2.25rem 0.7rem 2.5rem;
+  font-size: 0.92rem;
+  border: 1.5px solid var(--border-color);
+  border-radius: 10px;
+  outline: none;
+  transition: all 0.2s;
+  background: #f8fafc;
+}
+
+.search-input:focus {
+  border-color: var(--primary);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.search-clear-btn {
+  position: absolute;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #94a3b8;
+  display: none;
+  padding: 2px;
+}
+
+.search-clear-btn:hover {
+  color: #475569;
+}
+
+/* 셀렉트 그룹 (구/군, 행정동) */
+.select-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.select-wrap {
+  flex: 1;
+}
+
+.custom-select {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  font-size: 0.88rem;
+  border: 1.5px solid var(--border-color);
+  border-radius: 8px;
+  background: #f8fafc;
+  color: var(--text-primary);
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.custom-select:focus {
+  border-color: var(--primary);
+  background: #ffffff;
+}
+
+/* 브랜드 필터 칩 */
+.brand-filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.filter-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.reset-filter-btn {
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-size: 0.78rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.reset-filter-btn:hover {
+  background: #eff6ff;
+  text-decoration: underline;
+}
+
+.brand-chips-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.brand-chip {
+  padding: 0.35rem 0.7rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid var(--border-color);
+  background: #ffffff;
+  color: #475569;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.brand-chip:hover {
+  transform: translateY(-1px);
+}
+
+.brand-chip.active {
+  color: #ffffff;
+}
+
+.brand-chip[data-brand="ALL"].active {
+  background: #0f172a;
+  border-color: #0f172a;
+}
+
+.brand-chip[data-brand="CU"].active {
+  background: var(--brand-cu);
+  border-color: var(--brand-cu);
+}
+
+.brand-chip[data-brand="GS25"].active {
+  background: var(--brand-gs25);
+  border-color: var(--brand-gs25);
+}
+
+.brand-chip[data-brand="세븐일레븐"].active {
+  background: var(--brand-7eleven);
+  border-color: var(--brand-7eleven);
+}
+
+.brand-chip[data-brand="이마트24"].active {
+  background: var(--brand-emart24);
+  border-color: var(--brand-emart24);
+}
+
+.brand-chip[data-brand="기타"].active {
+  background: var(--brand-other);
+  border-color: var(--brand-other);
+}
+
+.brand-chip-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* 통계 및 결과 헤더 */
+.results-summary-bar {
+  padding: 0.65rem 1.25rem;
+  background: #f8fafc;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.results-count {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* 결과 리스트 */
+.stores-list-wrap {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.store-card {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.store-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
+  transform: translateY(-1px);
+}
+
+.store-card.selected {
+  border-color: var(--primary);
+  background: #f0f7ff;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+.store-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.store-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.badge-cu { background: var(--brand-cu-bg); color: var(--brand-cu); }
+.badge-gs25 { background: var(--brand-gs25-bg); color: var(--brand-gs25); }
+.badge-7eleven { background: var(--brand-7eleven-bg); color: var(--brand-7eleven); }
+.badge-emart24 { background: var(--brand-emart24-bg); color: var(--brand-emart24); }
+.badge-other { background: var(--brand-other-bg); color: var(--brand-other); }
+
+.store-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.store-branch {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #64748b;
+  margin-left: 0.2rem;
+}
+
+.store-address {
+  font-size: 0.82rem;
+  color: #475569;
+  line-height: 1.4;
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.3rem;
+}
+
+.store-address svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: #94a3b8;
+}
+
+.store-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px dashed var(--border-color);
+  padding-top: 0.4rem;
+  margin-top: 0.3rem;
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.nav-links-wrap {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.nav-link-btn {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.nav-link-btn:hover {
+  text-decoration: underline;
+}
+
+/* 검색 결과 없음 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  color: #94a3b8;
+  text-align: center;
+}
+
+.empty-state svg {
+  margin-bottom: 0.75rem;
+}
+
+/* ================= 우측 메인 지도 영역 ================= */
+.map-container {
+  flex: 1;
+  position: relative;
+  height: 100%;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* 지도 위 플로팅 버튼들 */
+.map-floating-controls {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.map-control-btn {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #334155;
+  transition: all 0.2s ease;
+}
+
+.map-control-btn:hover {
+  background: #f8fafc;
+  color: var(--primary);
+  transform: scale(1.05);
+}
+
+.map-control-btn.active {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+/* 타일 전환 토글 */
+.tile-toggle-wrap {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1rem;
+  z-index: 500;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(4px);
+  padding: 0.35rem 0.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  display: flex;
+  gap: 0.3rem;
+}
+
+.tile-btn {
+  border: none;
+  background: transparent;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #64748b;
+  transition: all 0.2s;
+}
+
+.tile-btn.active {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+/* ================= 마커 & 클러스터 커스텀 스타일 ================= */
+.custom-pin {
+  width: 32px;
+  height: 38px;
+  cursor: pointer;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.custom-pin:hover {
+  transform: scale(1.2) translateY(-4px);
+  z-index: 1000 !important;
+}
+
+/* 클러스터 커스텀 뱃지 */
+.cluster-custom {
+  background: rgba(37, 99, 235, 0.85);
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  transition: all 0.2s;
+}
+
+.cluster-custom:hover {
+  background: rgba(29, 78, 216, 0.95);
+  transform: scale(1.1);
+}
+
+/* 리플렛 팝업 커스텀 */
+.leaflet-popup-content-wrapper {
+  border-radius: 12px;
+  padding: 0;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  overflow: hidden;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  line-height: 1.4;
+}
+
+.popup-card {
+  padding: 1rem 1.15rem;
+  min-width: 250px;
+  max-width: 300px;
+}
+
+.popup-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.4rem;
+}
+
+.popup-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.popup-addr {
+  font-size: 0.82rem;
+  color: #475569;
+  margin: 0.4rem 0 0.8rem;
+}
+
+.popup-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.popup-btn {
+  flex: 1;
+  text-align: center;
+  padding: 0.45rem 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.popup-btn-kakao {
+  background: #fee500;
+  color: #191919;
+}
+
+.popup-btn-naver {
+  background: #03c75a;
+  color: #ffffff;
+}
+
+.popup-btn:hover {
+  opacity: 0.85;
+}
+
+/* ================= 모바일 전용 UI (바텀 시트 등) ================= */
+.mobile-top-bar {
+  display: none;
+}
+
+.bottom-sheet-backdrop {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  .app-container {
+    flex-direction: column;
+  }
+
+  /* 모바일 상단 컴팩트 검색바 */
+  .mobile-top-bar {
+    display: flex;
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    right: 0.75rem;
+    z-index: 600;
+    gap: 0.5rem;
+  }
+
+  .mobile-search-btn-trigger {
+    flex: 1;
+    background: #ffffff;
+    border: none;
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #64748b;
+    cursor: pointer;
+  }
+
+  .mobile-gps-btn {
+    width: 48px;
+    height: 48px;
+    background: #ffffff;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #334155;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  /* 데스크톱 지도 플로팅 컨트롤 위치 조정 */
+  .map-floating-controls {
+    top: 4.5rem;
+  }
+
+  .tile-toggle-wrap {
+    bottom: 4.5rem;
+  }
+
+  /* 모바일 바텀시트로 변환 */
+  .sidebar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    min-width: 100%;
+    height: 80vh;
+    max-height: 85vh;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 -4px 25px rgba(0, 0, 0, 0.2);
+    transform: translateY(calc(100% - 68px)); /* 기본 접힌 상태: 핸들만 보임 */
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1000;
+  }
+
+  .sidebar.expanded {
+    transform: translateY(0);
+  }
+
+  /* 바텀시트 드래그 핸들 */
+  .bottom-sheet-handle-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.6rem 1rem 0.4rem;
+    cursor: pointer;
+    background: #ffffff;
+    border-radius: 20px 20px 0 0;
+    user-select: none;
+  }
+
+  .bottom-sheet-handle {
+    width: 40px;
+    height: 4px;
+    background: #cbd5e1;
+    border-radius: 4px;
+    margin-bottom: 0.4rem;
+  }
+
+  .bottom-sheet-preview-info {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .bottom-sheet-backdrop {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 999;
+  }
+
+  .bottom-sheet-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
